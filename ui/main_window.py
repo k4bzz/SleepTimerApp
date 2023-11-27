@@ -11,22 +11,45 @@ class MainWindow(customtkinter.CTk):
         # set up the window
         self.title("Sleep Timer App")
         self.geometry(f"{700}x{500}")
-        # self.grid_columnconfigure(1, weight=0)
-        # self.grid_columnconfigure((0, 1), weight=0)
-        # self.grid_rowconfigure((0, 1, 2), weight=1)
+        self.minsize(400, 400)
 
-        # create main entry and button
+        # manual time entry
         self.entry = customtkinter.CTkEntry(self, placeholder_text="Enter time (mins)")
-        self.entry.grid(
-            row=7, column=7, columnspan=3, padx=(20, 0), pady=(20, 20), sticky="nsew"
-        )
-        self.main_button_1 = customtkinter.CTkButton(
+        self.entry.grid(row=9, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
+
+        # buttons
+        self.switch_off_15m = customtkinter.CTkButton(
             master=self,
             fg_color="transparent",
             border_width=2,
             text_color=("gray10", "#DCE4EE"),
-            text="blyatt",
+            text="15 mins",
+            command=print("test 15m"),
         )
-        self.main_button_1.grid(
-            row=3, column=3, columnspan=5, padx=(20, 20), pady=(20, 20), sticky="w"
+        self.switch_off_15m.grid(
+            row=10, column=2, padx=(20, 20), pady=(20, 20), sticky="w"
+        )
+
+        self.switch_off_30m = customtkinter.CTkButton(
+            master=self,
+            fg_color="transparent",
+            border_width=2,
+            text_color=("gray10", "#DCE4EE"),
+            text="30 mins",
+            command=print("test 30m"),
+        )
+        self.switch_off_30m.grid(
+            row=10, column=3, padx=(20, 20), pady=(20, 20), sticky="w"
+        )
+
+        self.switch_off_1h = customtkinter.CTkButton(
+            master=self,
+            fg_color="transparent",
+            border_width=2,
+            text_color=("gray10", "#DCE4EE"),
+            text="1 hr",
+            command=print("test 1h"),
+        )
+        self.switch_off_1h.grid(
+            row=10, column=7, padx=(20, 20), pady=(20, 20), sticky="w"
         )
