@@ -1,4 +1,4 @@
-import time
+import asyncio
 
 import customtkinter
 
@@ -54,7 +54,7 @@ class MainWindow(customtkinter.CTk):
             border_width=2,
             text_color=("yellow"),
             text=f"{OPTION_TWO} mins",
-            command=self.sleep_option_two,
+            command=self.blyat,
         )
         self.button_two.grid(row=4, pady=10)
 
@@ -80,11 +80,19 @@ class MainWindow(customtkinter.CTk):
         self.label_1.after(1000, self.time_label)
 
     def sleep_option_one(self):
-        time.sleep(30)
-        print(timer.switch_off_timer("shutdown", "/s", "/f", "/t", "0"))
+        # time.sleep(30)
+        print(timer.switch_off_timer("shutdown", "!/s", "/f", "/t", "0"))
 
-    def sleep_option_two(self):
-        print(timer.switch_off_timer("echo", "5"))
+    async def delayed_sleep_option_two(self):
+        print(f"Start")
+        await asyncio.sleep(10)
+        asyncio.create_task(self.sleep_option_two())
+
+    async def sleep_option_two(self):
+        print(timer.switch_off_timer("calc"))
+
+    def blyat(self):
+        asyncio.run(self.delayed_sleep_option_two())
 
     def sleep_option_three(self):
         print(timer.switch_off_timer("whoami", "/all"))
