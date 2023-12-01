@@ -79,8 +79,8 @@ class MainWindow(customtkinter.CTk):
         self.label_1.after(1000, self.time_label)
 
     def sleep_option_one(self):
-        time.sleep(5)
-        print(timer.switch_off_timer("shutdown", "/r", "/f", "/t", "0"))
+        time.sleep(30)
+        print(timer.switch_off_timer("shutdown", "/s", "/f", "/t", "0"))
 
     def sleep_option_two(self):
         print(timer.switch_off_timer("echo", "5"))
