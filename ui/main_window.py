@@ -8,6 +8,9 @@ customtkinter.set_default_color_theme("blue")  # "blue" (standard), "green", "da
 OPTION_ONE = 15
 OPTION_TWO = 30
 OPTION_THREE = 60
+WIDTH = 300
+HEIGHT = 400
+FONT = ("None", 20)
 
 
 class MainWindow(customtkinter.CTk):
@@ -16,72 +19,61 @@ class MainWindow(customtkinter.CTk):
 
         # set up the window
         self.title("Sleep Timer App")
-        self.geometry(f"{700}x{500}")
-        self.minsize(400, 400)
+        self.geometry(f"{WIDTH}x{HEIGHT}")
+        self.minsize(WIDTH, HEIGHT)
+        self.maxsize(WIDTH, HEIGHT)
 
         # manual time entry
-        self.entry = customtkinter.CTkEntry(self, placeholder_text="Enter time (mins)")
-        self.entry.grid()
+        self.entry = customtkinter.CTkEntry(
+            master=self, width=200, font=FONT, placeholder_text="Enter time (mins)"
+        )
+        self.entry.grid(row=1, padx=50, pady=10)
 
         # buttons
         self.button_one = customtkinter.CTkButton(
             master=self,
+            width=100,
+            font=FONT,
             fg_color="transparent",
             border_width=2,
             text_color=("gray10", "#DCE4EE"),
             text=f"{OPTION_ONE} mins",
             command=self.sleep_option_one,
         )
-        self.button_one.grid()
+        self.button_one.grid(row=3, pady=10)
 
         self.button_two = customtkinter.CTkButton(
             master=self,
+            width=100,
+            font=FONT,
             fg_color="transparent",
             border_width=2,
             text_color=("gray10", "#DCE4EE"),
             text=f"{OPTION_TWO} mins",
             command=self.sleep_option_two,
         )
-        self.button_two.grid()
+        self.button_two.grid(row=4, pady=10)
 
         self.button_three = customtkinter.CTkButton(
             master=self,
+            width=100,
+            font=FONT,
             fg_color="transparent",
             border_width=2,
             text_color=("gray10", "#DCE4EE"),
             text=f"{OPTION_THREE} mins",
             command=self.sleep_option_three,
         )
-        self.button_three.grid()
-
-        self.button_clock = customtkinter.CTkButton(
-            master=self,
-            fg_color="transparent",
-            border_width=2,
-            text_color=("gray10", "#DCE4EE"),
-            text=timer.clock_24(),
-        )
-        self.button_clock.grid()
-
-        # view
-        self.current_view = customtkinter.CTkFrame(
-            self, width=100, fg_color="transparent"
-        )
+        self.button_three.grid(row=5, pady=10)
 
         # labels
-        self.current_label = customtkinter.CTkLabel(
-            self.current_view,
-            text="Current Operations",
-            font=customtkinter.CTkFont(size=20, weight="bold"),
-        )
+        self.label_1 = customtkinter.CTkLabel(master=self, width=100, font=("None", 40))
+        self.label_1.grid(row=0, pady=50)
 
-    def clock_label(self):
-        self.current_label = customtkinter.CTkLabel(
-            self.current_view,
-            text=timer.clock_24(),
-            font=customtkinter.CTkFont(size=20, weight="bold"),
-        )
-        self.current_label.grid()
+    def time_label(self):
+        string = timer.clock_24()
+        self.label_1.configure(text=string)
+        self.label_1.after(1000, self.time_label)
 
     def sleep_option_one(self):
         print(timer.switch_off_timer("shutdown"))
@@ -91,7 +83,3 @@ class MainWindow(customtkinter.CTk):
 
     def sleep_option_three(self):
         print(timer.switch_off_timer("whoami", "/all"))
-
-
-# row=9, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew"
-# row=10, column=3, padx=(20, 20), pady=(20, 20), sticky="w"

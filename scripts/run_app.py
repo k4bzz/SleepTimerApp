@@ -2,6 +2,5 @@ from main_window import MainWindow
 
 if __name__ == "__main__":
     app = MainWindow()
-    print(app.grid_size())
-    app.clock_label()
+    app.time_label()
     app.mainloop()
