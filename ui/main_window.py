@@ -8,6 +8,7 @@ customtkinter.set_appearance_mode("System")  # "System" (standard), "Dark", "Lig
 customtkinter.set_default_color_theme("blue")  # "blue" (standard), "green", "dark-blue"
 # TODO potential convertation to str needed
 # TODO change functionality to wait and then switch off so if you kill the program it stops the execution
+# TODO sleep pauses execution
 OPTION_ONE = 15
 OPTION_TWO = 30
 OPTION_THREE = 60
