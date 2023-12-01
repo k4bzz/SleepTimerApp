@@ -1,3 +1,5 @@
+import time
+
 import customtkinter
 
 import timer
@@ -5,6 +7,7 @@ import timer
 customtkinter.set_appearance_mode("System")  # "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("blue")  # "blue" (standard), "green", "dark-blue"
 # TODO potential convertation to str needed
+# TODO change functionality to wait and then switch off so if you kill the program it stops the execution
 OPTION_ONE = 15
 OPTION_TWO = 30
 OPTION_THREE = 60
@@ -32,11 +35,11 @@ class MainWindow(customtkinter.CTk):
         # buttons
         self.button_one = customtkinter.CTkButton(
             master=self,
-            width=100,
+            width=200,
             font=FONT,
             fg_color="transparent",
             border_width=2,
-            text_color=("gray10", "#DCE4EE"),
+            text_color=("green"),
             text=f"{OPTION_ONE} mins",
             command=self.sleep_option_one,
         )
@@ -44,11 +47,11 @@ class MainWindow(customtkinter.CTk):
 
         self.button_two = customtkinter.CTkButton(
             master=self,
-            width=100,
+            width=200,
             font=FONT,
             fg_color="transparent",
             border_width=2,
-            text_color=("gray10", "#DCE4EE"),
+            text_color=("yellow"),
             text=f"{OPTION_TWO} mins",
             command=self.sleep_option_two,
         )
@@ -56,11 +59,11 @@ class MainWindow(customtkinter.CTk):
 
         self.button_three = customtkinter.CTkButton(
             master=self,
-            width=100,
+            width=200,
             font=FONT,
             fg_color="transparent",
             border_width=2,
-            text_color=("gray10", "#DCE4EE"),
+            text_color=("red"),
             text=f"{OPTION_THREE} mins",
             command=self.sleep_option_three,
         )
@@ -76,7 +79,8 @@ class MainWindow(customtkinter.CTk):
         self.label_1.after(1000, self.time_label)
 
     def sleep_option_one(self):
-        print(timer.switch_off_timer("shutdown"))
+        time.sleep(5)
+        print(timer.switch_off_timer("shutdown", "/r", "/f", "/t", "0"))
 
     def sleep_option_two(self):
         print(timer.switch_off_timer("echo", "5"))
